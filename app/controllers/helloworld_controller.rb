@@ -8,7 +8,7 @@ class HelloworldController < ApplicationController
                "Billy" => " 58 "
               }
     
-    # render :text => "Patrick il é maestro del mondo git test"
+    # render :text => "Patrick il é maestro del mondo"
   end
 
   def gen
