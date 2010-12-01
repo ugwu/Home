@@ -42,6 +42,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'helloworld', :controller => 'helloworld', :action => 'index' 
   map.connect 'gettestpage', :controller => 'helloworld', :action => 'gen' 
   
+  map.resources :users
+  
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
