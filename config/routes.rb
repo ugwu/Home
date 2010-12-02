@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'gettestpage', :controller => 'helloworld', :action => 'gen' 
   
   map.resources :users
+  map.resources :microposts
   
   
   map.connect ':controller/:action/:id'
