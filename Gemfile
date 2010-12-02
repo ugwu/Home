@@ -12,7 +12,7 @@ gem 'sinatra'
 gem 'sequel'
 gem 'taps'
 gem 'rspec'
-
+gem 'rspec-rails'
 
 
 # Use unicorn as the web server
