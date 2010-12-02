@@ -8,6 +8,11 @@ gem 'rails', '3.0.3'
 gem 'mysql', :require => 'mysql'
 gem 'ruby-mysql'
 gem 'heroku'
+gem 'sinatra'
+gem 'sequel'
+gem 'taps'
+
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
