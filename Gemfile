@@ -11,6 +11,7 @@ gem 'heroku'
 gem 'sinatra'
 gem 'sequel'
 gem 'taps'
+gem 'rspec'
 
 
 
