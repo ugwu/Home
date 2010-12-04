@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.get 'pages/home'
   map.get 'pages/contact'
+  map.get 'pages/about'
   
   map.connect 'helloworld', :controller => 'helloworld', :action => 'index' 
   map.connect 'gettestpage', :controller => 'helloworld', :action => 'gen' 
