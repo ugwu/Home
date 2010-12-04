@@ -13,6 +13,7 @@ gem 'sequel'
 gem 'taps'
 gem 'rspec'
 gem 'rspec-rails'
+gem 'webrat'
 
 
 # Use unicorn as the web server
