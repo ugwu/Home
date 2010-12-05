@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pp'
 
   
   describe PagesController do
@@ -17,7 +18,7 @@ require 'spec_helper'
     
     it "should have the right title" do
       get 'home'
-      response.should have_selector("title",
+       response.should have_selector("title",
                         :content => @base_line + " | Home")
     end
   end
