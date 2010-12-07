@@ -15,6 +15,18 @@ gem 'rspec'
 gem 'rspec-rails'
 gem 'webrat'
 
+group :development do
+  gem 'rspec-rails'
+  gem 'annotate-models', '1.0.4'
+end
+
+# group :test do
+#   .
+#   .
+#   .
+# end
+
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

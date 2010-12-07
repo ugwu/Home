@@ -28,3 +28,5 @@ production:
   database:  hello_world_production
   pool: 5
   timeout: 5000
+  charset: utf8
+  collation: utf8_unicode_ci

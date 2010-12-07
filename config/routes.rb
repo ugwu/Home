@@ -1,15 +1,20 @@
 Home::Application.routes.draw do
   
-  get "users/new"
-
-  match 'helloworld', :to => 'helloworld#index'
-  match 'gettestpage', :to => 'helloworld#gen'
+  # get "users/new"
   
+  resources :users
+  
+  # match '/users/:id' => 'users#show'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   match '/signup',  :to => 'users#new'
   root :to => 'pages#home'
+  
+  
+  
+  match 'helloworld', :to => 'helloworld#index'
+  match 'gettestpage', :to => 'helloworld#gen'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
