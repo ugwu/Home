@@ -15,7 +15,7 @@ describe UsersController do
     end
     
     it "should have the right title" do
-      get 'new'
+      get :new
       response.should have_selector("title", :content => @base_line + " | Sign up")
     end
   end
@@ -51,6 +51,62 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
   end      
+  
+  
+  describe "Sign in POST Create" do
+    
+    describe "Invalid post requests" do
+      before(:each) do
+        @attr = {:name => "", 
+                 :email => "", 
+                 :password => "", 
+                 :password_confirmation => "" }
+      
+      end
+    
+      it "should not create a user" do
+          lambda do
+             post :create, :user => @attr
+           end.should_not change(User, :count)
+       end
+     
+     it "should have the right title" do
+       post :create, :user => @attr
+       response.should have_selector("title", :content => "Sign up")
+     end
+     
+     it "should render the 'new' page" do
+       post :create, :user => @attr
+       response.should render_template('new')
+     end
+    end
+      
+      describe "Successful sign up" do
+        
+        before(:each) do
+          @attr = { :name => "New User", :email => "user@example.com",
+                    :password => "foobar", :password_confirmation => "foobar" }
+          
+        end
+        
+        it "should create a user and save him in the database" do
+          lambda do
+            post (:create, :user => @attr)
+          end.should change (User, :count).by(1)
+        end
+        
+        it "should redirect the user to the correct page" do
+          post :create, :user => @attr
+          response.should redirect_to(user_path(assigns(:user)))
+        end
+        
+        it "should have a welcome message" do
+          post :create, :user => @attr
+          flash[:success].should =~ /welcome to the sample app/i
+        end
+       end
+    
+   end
   
 end
 
