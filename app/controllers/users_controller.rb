@@ -1,14 +1,19 @@
+require 'pp'
 class UsersController < ApplicationController
   
   def create
-
     @user = User.new(params[:user])       
       if @user.save
         flash[:success] = "Welcome to the Sample App!"         
          redirect_to @user
+         sign_in(@user)
       else
         @title = "Sign up"
+        @user.password = nil
+        @user.password_confirmation = nil 
         render ('new')
+       
+       # Add code to ensure the password field is cleared on failed submissions.
       end
   end
   

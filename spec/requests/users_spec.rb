@@ -37,7 +37,48 @@ describe "Users" do
         end.should change(User, :count).by(1)
       end
     end
-   
+  end
   
+  describe "sign in/out" do
+    
+    describe "unsuccessful sign in" do
+      it "should not sign the user in" do
+        visit signin_path
+        fill_in "Email",          :with => ""
+        fill_in "Password",       :with => ""
+        click_button
+        response.should render_template('sessions')
+        response.should have_selector("div.flash.error", :content => "Invalid")
+      end
+    end
+    
+    describe "successful sign in" do
+      it "should sign a user in" do
+        user = Factory(:user)
+        visit signin_path
+        fill_in "Email",         :with => user.email
+        fill_in "Password",      :with => user.password
+        click_button
+        response.should render_template('users/show')
+        controller.should be_signed_in
+        response.should_not have_selector("div.flash.error", :content => "Invalid")
+        click_link "Sign out"
+        controller.should_not be_signed_in
+      end
+    end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

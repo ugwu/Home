@@ -5,6 +5,11 @@ require 'rspec/rails'
 
 RSpec.configure do |config|
   include Webrat::Methods
+  
+  def test_sign_in(user)
+    controller.sign_in(user)
+  end
+  
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,

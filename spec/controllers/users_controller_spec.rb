@@ -18,6 +18,27 @@ describe UsersController do
       get :new
       response.should have_selector("title", :content => @base_line + " | Sign up")
     end
+    
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+    
+    it "should have an email field" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+    
+    it "should have a password field" do
+      get :new
+      response.should have_selector("input[name='user[password]'][type='password']") 
+    end
+
+    it "should have a password confirmation field" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+    
   end
   
   describe "GET 'Show'" do
@@ -67,7 +88,7 @@ describe UsersController do
       it "should not create a user" do
           lambda do
              post :create, :user => @attr
-           end.should_not change(User, :count)
+           end.should change(User, :count).by(0)
        end
      
      it "should have the right title" do
@@ -91,8 +112,8 @@ describe UsersController do
         
         it "should create a user and save him in the database" do
           lambda do
-            post (:create, :user => @attr)
-          end.should change (User, :count).by(1)
+            post(:create, :user => @attr)
+          end.should change(User, :count).by(1)
         end
         
         it "should redirect the user to the correct page" do
@@ -104,6 +125,12 @@ describe UsersController do
           post :create, :user => @attr
           flash[:success].should =~ /welcome to the sample app/i
         end
+        
+        it "should sign the user in upon sign up" do
+          post :create, :user => @attr
+          controller.should be_signed_in
+        end
+        
        end
     
    end
