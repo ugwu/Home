@@ -5,9 +5,21 @@ require 'rspec/rails'
 
 RSpec.configure do |config|
   include Webrat::Methods
-  
+  # used from the sessionsHelper module
   def test_sign_in(user)
     controller.sign_in(user)
+  end
+  
+  def test_sign_out
+    controller.sign_out
+  end
+  
+  # used for the integration request tests
+  def integration_sign_in(user) 
+    visit signin_path
+    fill_in :email,    :with => user.email
+    fill_in :password, :with => user.password
+    click_button
   end
   
 end

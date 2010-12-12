@@ -55,10 +55,7 @@ describe "Users" do
     describe "successful sign in" do
       it "should sign a user in" do
         user = Factory(:user)
-        visit signin_path
-        fill_in "Email",         :with => user.email
-        fill_in "Password",      :with => user.password
-        click_button
+        integration_sign_in(user)
         response.should render_template('users/show')
         controller.should be_signed_in
         response.should_not have_selector("div.flash.error", :content => "Invalid")
