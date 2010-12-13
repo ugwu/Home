@@ -312,6 +312,7 @@ describe UsersController do
     
     before(:each) do
       @user = Factory(:user)
+      @user_1 = Factory(:user, :email => "admin@example.net")
     end
       
     describe "as a non signed in user" do
@@ -332,8 +333,8 @@ describe UsersController do
     
     describe "as an admin user" do
       before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
-        test_sign_in(admin)
+        @admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        test_sign_in(@admin)
       end
       
       it "should delete the user" do
@@ -345,6 +346,13 @@ describe UsersController do
       it "should redirect to the users page" do
          delete :destroy, :id => @user
          response.should redirect_to(users_path)
+      end
+      
+      it "should not allows admin users to delete themselves" do
+        lambda do
+          delete :destroy, :id => @admin
+        end.should change(User, :count).by(0)
+      flash[:notice].should =~ /Admin users cannot delete themselves/i 
       end
     end    
   end
