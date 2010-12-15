@@ -1,13 +1,21 @@
 Home::Application.routes.draw do
   
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :microposts, :only => [:create, :destroy]
   resources :sessions,   :only => [:new, :create, :destroy]
+  resources :relationships, :only => [:create, :destroy]
+  
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   
   
-  resources :users
+  # resources :users
   
   # match '/users/:id' => 'users#show'
   match '/contact', :to => 'pages#contact'

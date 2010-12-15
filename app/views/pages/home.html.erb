@@ -9,16 +9,18 @@
       </td>
       <td class="sidebar round">
         <%= render 'shared/user_info' %>
+		<%= render 'shared/stats' %>
       </td>
     </tr>
   </table>
 <% else %>
-  <h1>Sample App</h1>
+  <h1>POST-it - By Patrick Ugwu</h1>
 
   <p>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
+    Welcome to the POST-it. Sign up and give it a spin!
+    </p>
+    <a href="http://railstutorial.org/">Powered by Ruby on Rails Tutorial</a>
+       Many thanks to Michael Hartl!
   </p>
 
   <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
